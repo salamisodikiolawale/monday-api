@@ -1,0 +1,69 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+
+  erp-mariadb:
+    image: mariadb
+    container_name: erp-mariadb
+    restart: 'no'
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - erp-volume:/etc/mysql/conf.d
+    ports:
+      - 3307:3306
+
+  adminer-mariadb-vente:
+    image: adminer
+    container_name: adminer-mariadb
+    restart: 'no'
+    ports:
+      - 8081:8080
+
+
+  erp-front-angular:
+    build:
+      context: ./erp-front-angular
+      dockerfile: Dockerfile
+    container_name: erp-front-angular
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./erp-front-angular/src
+        target: /app/src
+      - type: bind
+        source: ./erp-front-angular/
+        target: /app/
+    ports:
+      - 4200:4200
+
+  erp-api-module-gdr-nestjs:
+    build:
+      context: ./erp-api-module-gdr-nestjs
+      dockerfile: Dockerfile
+    container_name: erp-api-module-gdr
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./erp-api-module-gdr-nestjs
+        target: /app
+    ports:
+      - 3000:3000
+    
+#   erp-module-rh:
+#     build:
+#       context: ./erp-module-rh-nestjs
+#       dockerfile: Dockerfile
+#     container_name: erp-module-rh
+#     restart: 'no'
+#     volumes:
+#       - type: bind
+#         source: ./erp-module-rh-nestjs
+#         target: /app/src
+#     ports:
+#       - 3002:3000
+
+volumes:
+  erp-volume:
