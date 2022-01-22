@@ -12,8 +12,8 @@ import { jwtConstants } from './constants';
 import { AuthService } from './auth.service';
 
 //Strategy
-import { LocalStrategy } from './local.strategy';
-import { JwtStrategy } from './jwt.strategy';
+import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   providers: [AuthService, LocalStrategy, JwtStrategy],
