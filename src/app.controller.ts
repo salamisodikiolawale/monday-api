@@ -6,7 +6,7 @@ import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 //Guards
-import { LocalAuthGuard } from './auth/local-auth.guard';
+import { LocalAuthGuard } from './auth/guards/local-auth.guard'; 
 
 @Controller()
 export class AppController {
@@ -15,6 +15,18 @@ export class AppController {
     private readonly authService: AuthService
   ) {}
 
+  @Get()
+  async hello(){
+    return {
+        name:"salami",
+        email:"salamisodikiolawale@gmail.com",
+        phone:"0758954217",
+        skype:"salamisodikiolawale@gmail.com",
+        lieu:"Evry",
+        fuseau:"GMT 12:PM",
+        anniversaire:"23-12-1995",
+      }
+  }
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
   async login(@Request() req){
