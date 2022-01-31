@@ -6,7 +6,7 @@ import { AuthService } from './auth/auth.service';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 //Guards
-import { LocalAuthGuard } from './auth/local-auth.guard';
+import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 
 @Controller()
 export class AppController {
@@ -15,13 +15,30 @@ export class AppController {
     private readonly authService: AuthService
   ) {}
 
+  // /**
+  //  * With basic auth passport
+  //  * @param req 
+  //  * @returns 
+  //  */
+  // @UseGuards(LocalAuthGuard)
+  // @Post('auth/login')
+  // async login(@Request() req){
+  //   return  req.user; 
+  // }
+
+
+  // //Mon idee: utilisation de basic auth avec generation de token
+  // @UseGuards(LocalAuthGuard)
+  // @Post('auth/login')
+  // async login(@Request() req) {
+  //   return this.authService.login(req.user);
+  // }
+
+
   @UseGuards(LocalAuthGuard)
   @Post('auth/login')
-  async login(@Request() req){
-    // return  req.user; basic auth passport
-
-    //Jwt
-    return this.authService.login(req.user)
+  async login(@Request() req) {
+    return this.authService.login(req.user);
   }
 
   @UseGuards(JwtAuthGuard)
