@@ -7,15 +7,17 @@ import { User } from './users.interfaces';
 export class UsersService {
 
     private readonly users: User[] = [
-        {
-            userId: 1,
-            username:'john',
-            password:'changeme'
-        },
+       
         {
             userId: 2,
-            username:'marria',
-            password:'guess'
+            name: "Salami",
+            username:'salami',
+            password:'salami',
+            phone:"0758954217",
+            skype:"salamisodikiolawale@gmail.com",
+            lieu:"Evry",
+            fuseau:"GMT 12:PM",
+            anniversaire:"23-12-1995",
         }
     ];
 

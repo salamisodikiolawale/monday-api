@@ -12,23 +12,9 @@ import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
+    // private readonly appService: AppService,
     private readonly authService: AuthService
   ) {}
-
-
-  @Get()
-  async hello(){
-    return {
-        name:"salami",
-        email:"salamisodikiolawale@gmail.com",
-        phone:"0758954217",
-        skype:"salamisodikiolawale@gmail.com",
-        lieu:"Evry",
-        fuseau:"GMT 12:PM",
-        anniversaire:"23-12-1995",
-      }
-  }
 
   // /**
   //  * With basic auth passport
