@@ -1,0 +1,11 @@
+{
+    "type":"mysql",
+    "host":"monday-mariadb",
+    "port":"3307",
+    "username":"root",
+    "password":"root",
+    "database": "monday-db",
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "synchronize": true
+
+}

@@ -16,10 +16,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
+    console.log("jwt.strategy",payload)
     //Nous pouvous effectuer des requete bd pour avoir plus infos dans l'objet user qui sera envoyer
-    const user = this.userService.findOne(payload.username)
+    const user = this.userService.findOne(payload.email)
+    
     const {password, ...result} = await user;
-    // return { userId: payload.sub, username: payload.username };
+    // return { userId: payload.sub, email: payload.email };
     return result
   }
 }
