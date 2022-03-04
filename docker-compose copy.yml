@@ -1,0 +1,58 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+
+  monday-mariadb:
+    image: mariadb
+    container_name: monday-mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - monday-volume:/var/lib/mysql
+    # ports:
+    #   - 3308:3306
+
+  adminer-mariadb:
+    image: adminer
+    container_name: adminer-mariadb
+    restart: 'no'
+    ports:
+      - 8081:8080
+
+
+  monday-angular:
+    # image: sodiki/monday-angular:0.1
+    build:
+      context: ./monday-angular
+      dockerfile: Dockerfile
+    container_name: monday-angular
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./monday-angular/src
+        target: /app/src
+      - type: bind
+        source: ./monday-angular/
+        target: /app/
+    ports:
+      - 4200:4200
+
+  monday-api:
+    # image:  sodiki/monday-api:0.1
+    build:
+      context: ./monday-api
+      dockerfile: Dockerfile
+    container_name: monday-api
+    restart: 'no'
+    volumes:
+      - type: bind
+        source: ./monday-api
+        target: /app
+    ports:
+      - 3000:3000
+      
+volumes:
+  monday-volume:
