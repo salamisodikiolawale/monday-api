@@ -10,7 +10,7 @@ export class User {
   email:string;
 
   @Column()
-  password: string;
+  password?: string;
 
   @Column()
   username?: string;
@@ -33,4 +33,3 @@ export class User {
   @Column()
   anniversaire?:string
 }
-

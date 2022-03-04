@@ -9,7 +9,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 
 //Services
-import { AuthService } from './auth.service';
+import { AuthService } from '../shares/services/auth.service';
 
 //Strategy
 import { LocalStrategy } from './strategies/local.strategy';
